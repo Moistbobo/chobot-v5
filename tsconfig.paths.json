@@ -20,6 +20,18 @@
       "commands/*": [
         "./commands/*"
       ],
+      "mongod": [
+        "./mongod"
+      ],
+      "mongod/*": [
+        "./mongod/*"
+      ],
+      "types": [
+        "./types"
+      ],
+      "types/*": [
+        "./types/*"
+      ],
       "locales": [
         "./locales"
       ],

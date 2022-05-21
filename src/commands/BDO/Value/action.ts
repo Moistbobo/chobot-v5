@@ -1,7 +1,8 @@
-import Embed from 'utils/Embed';
+import Embed from 'utils/MessageUtils';
+import CommandArgs from 'types/CommandArgs';
 import tools from './tools';
 
-const action = (args: any) => {
+const action = (args: CommandArgs) => {
   const { formatNumber, toMachineReadable, startsWithNumber, formattedPrice } = tools;
 
   const {
@@ -33,11 +34,10 @@ const action = (args: any) => {
   const finalSellingPrice = valuePackPrice + fameBonus;
 
   const needHumanReadable = baseSellPrice > 1000000;
-  return channel.send({
-    embeds: [
-      Embed.createEmbed({
-        thumbnail: 'https://bddatabase.net/items/new_icon/00000001_special.png',
-        contents: `An item sold for \`${formatNumber(sellingPrice)}\` will earn 
+  return channel.send(
+    Embed.createEmbed({
+      thumbnail: 'https://bddatabase.net/items/new_icon/00000001_special.png',
+      contents: `An item sold for \`${formatNumber(sellingPrice)}\` will earn 
       
       ${formattedPrice(baseSellPrice, needHumanReadable)} without value pack
       
@@ -54,9 +54,8 @@ const action = (args: any) => {
           }%)\``
         : 'Not including fame bonus.'
     }`,
-      }),
-    ],
-  });
+    })
+  );
 };
 
 export default action;

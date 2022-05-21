@@ -1,7 +1,8 @@
 import fetch from 'node-fetch';
 import cheerio from 'cheerio';
 import _ from 'lodash';
-import Embed from 'utils/Embed';
+import Embed from 'utils/MessageUtils';
+import CommandArgs from 'types/CommandArgs';
 
 const updatesUrl = 'https://www.naeu.playblackdesert.com/en-US/News/Notice?boardType=2';
 
@@ -45,13 +46,11 @@ const action = async (args: CommandArgs) => {
 
   const patchNotes = await getPatchNotesNew(args, history);
 
-  return channel.send({
-    embeds: [
-      Embed.createEmbed({
-        contents: patchNotes,
-      }),
-    ],
-  });
+  return channel.send(
+    Embed.createEmbed({
+      contents: patchNotes,
+    })
+  );
 };
 
 export default action;

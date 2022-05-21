@@ -21,12 +21,14 @@ const createEmbed = (args: any, error = false) => {
     });
   }
 
-  return embed;
+  return { embeds: [embed] };
 };
 
 const createMessage = (contents: string, isError?: boolean) => createEmbed({ contents }, isError);
 
-export default {
+const MessageUtils = {
   createEmbed,
   createMessage,
 };
+
+export default MessageUtils;
