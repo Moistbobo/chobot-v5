@@ -12,6 +12,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
+    'consistent-return': 0,
     'import/extensions': 0,
     'arrow-body-style': 0,
     'operator-assignment': 0,

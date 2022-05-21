@@ -1,4 +1,4 @@
 import 'module-alias/register';
-import envConfig from 'config/envConfig';
+import runBot from './src/runBot';
 
-console.log(envConfig);
+runBot();
