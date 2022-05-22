@@ -1,6 +1,6 @@
 import GeneralUtils from 'utils/GeneralUtils';
 import MessageUtils from 'utils/MessageUtils';
-import FunResult from 'mongod/schemas/FunResult';
+import DeathmatchStats from 'mongod/schemas/Deathmatch';
 import CommandArgs from 'types/CommandArgs';
 
 const action = async (args: CommandArgs) => {
@@ -154,11 +154,17 @@ const action = async (args: CommandArgs) => {
     ],
   });
 
-  const funResult =
-    (await FunResult.findOne({ userID: fighterAHp > 0 ? authorId : mentionedUser.id })) ||
-    new FunResult({ userID: fighterAHp > 0 ? authorId : mentionedUser.id });
-  funResult.deathmatchWins += 1;
-  await funResult.save();
+  const winnerDMStat =
+    (await DeathmatchStats.findOne({ userID: fighterAHp > 0 ? authorId : mentionedUser.id })) ||
+    new DeathmatchStats({ userID: fighterAHp > 0 ? authorId : mentionedUser.id });
+  winnerDMStat.wins += 1;
+  await winnerDMStat.save();
+
+  const loserDMStat =
+    (await DeathmatchStats.findOne({ userID: fighterAHp > 0 ? mentionedUser.id : authorId })) ||
+    new DeathmatchStats({ userID: fighterAHp > 0 ? mentionedUser.id : authorId });
+  loserDMStat.losses += 1;
+  await loserDMStat.save();
 
   await fightMessage.edit(newEmbed);
 };
