@@ -13,8 +13,6 @@ const runBot = () => {
   });
 
   client.on('messageCreate', async (message) => {
-    console.log(message.content);
-
     const userCommand = message.content
       .split(' ')[0]
       .toLowerCase()
