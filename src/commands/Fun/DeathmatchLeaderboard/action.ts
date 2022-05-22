@@ -19,14 +19,18 @@ const action = async (args: CommandArgs) => {
   const filteredList = top10Wins.filter(
     (x) => allMemberIds.includes(x.userID) && x.deathmatchWins > 0
   );
-  filteredList.length = 20;
+  filteredList.length = 10;
 
   const embed = createEmbed({
     title: 'Deathmatch Leaderboard',
-    extraFields: filteredList.map((x, index) => ({
-      name: `Rank ${index + 1}`,
-      value: `${mentionUser(x.userID)}\nWins: ${x.deathmatchWins}`,
-    })),
+    extraFields: filteredList.map((x, index) => {
+      const userdata = allMembers.find((y) => y.id === x.userID);
+
+      return {
+        name: `Rank ${index + 1}`,
+        value: `${mentionUser(x.userID)} - ${userdata?.user.tag}\nWins: ${x.deathmatchWins}`,
+      };
+    }),
   });
 
   return channel.send(embed);
