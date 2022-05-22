@@ -19,6 +19,7 @@ const action = async (args: CommandArgs) => {
   const filteredList = top10Wins.filter(
     (x) => allMemberIds.includes(x.userID) && x.deathmatchWins > 0
   );
+  filteredList.length = 20;
 
   const embed = createEmbed({
     title: 'Deathmatch Leaderboard',
