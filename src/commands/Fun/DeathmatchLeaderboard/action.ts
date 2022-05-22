@@ -12,19 +12,17 @@ const action = async (args: CommandArgs) => {
 
   if (!guild || !member) return;
 
-  const test = guild.members;
-
-  const memberList = await test.list();
-
   const top10Wins = await FunResult.find({}).sort({ deathmatchWins: -1 });
+  const allMembers = await guild.members.fetch();
+  const allMemberIds = allMembers.map((x) => x.id);
 
-  const idOnly = memberList.map((x) => x.id);
-  const membersInServerLeaderboard = top10Wins.filter((x) => idOnly.find((y) => y === x.userID));
-  membersInServerLeaderboard.length = 10;
+  const filteredList = top10Wins.filter(
+    (x) => allMemberIds.includes(x.userID) && x.deathmatchWins > 0
+  );
 
   const embed = createEmbed({
     title: 'Deathmatch Leaderboard',
-    extraFields: membersInServerLeaderboard.map((x, index) => ({
+    extraFields: filteredList.map((x, index) => ({
       name: `Rank ${index + 1}`,
       value: `${mentionUser(x.userID)}\nWins: ${x.deathmatchWins}`,
     })),
