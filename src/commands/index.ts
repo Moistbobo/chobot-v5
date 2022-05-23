@@ -10,6 +10,8 @@ import MinusRep from 'commands/Fun/MinusRep';
 import Rep from 'commands/Fun/Rep';
 import RepHistory from 'commands/Fun/RepHistory';
 import TTSFile from 'commands/TTS/TTSFile';
+import BuyChoCoin from 'commands/Currency/BuyChoCoin';
+import Balance from 'commands/Currency/Balance';
 
 const commands = [
   Value,
@@ -24,6 +26,8 @@ const commands = [
   Rep,
   RepHistory,
   TTSFile,
+  BuyChoCoin,
+  Balance,
 ];
 
 export default commands;

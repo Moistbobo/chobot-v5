@@ -1,6 +1,7 @@
 import * as Discord from 'discord.js';
+import { CreateEmbedArgs } from 'types/CreateEmbedArgs';
 
-const createEmbed = (args: any, error = false) => {
+const createEmbed = (args: CreateEmbedArgs, error = false) => {
   const { footer, contents, author, url, title, image, thumbnail, extraFields } = args;
 
   const embed = new Discord.MessageEmbed().setColor(error ? '#f08080' : '#499369');
