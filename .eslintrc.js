@@ -33,6 +33,8 @@ module.exports = {
     'no-undef': 0,
     'no-underscore-dangle': 0,
     'import/no-extraneous-dependencies': 0,
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
   },
   settings: {
     'import/resolver': {
