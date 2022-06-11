@@ -1,7 +1,7 @@
 import { EmbedAuthorData, EmbedFooterData } from 'discord.js';
 
 interface CreateEmbedArgs {
-  footer?: EmbedFooterData;
+  footer?: string | EmbedFooterData;
 
   contents?: string;
 

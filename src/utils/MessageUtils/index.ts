@@ -6,7 +6,10 @@ const createEmbed = (args: CreateEmbedArgs, error = false) => {
 
   const embed = new Discord.MessageEmbed().setColor(error ? '#f08080' : '#499369');
 
-  if (footer) embed.setFooter(footer);
+  if (footer) {
+    if (typeof footer === 'string') embed.setFooter({ text: footer });
+    else embed.setFooter(footer);
+  }
   if (contents) embed.setDescription(contents);
   if (title) embed.setTitle(title);
   if (author) embed.setAuthor(author);
