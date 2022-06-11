@@ -13,6 +13,7 @@ import TTSFile from 'commands/TTS/TTSFile';
 // import BuyChoCoin from 'commands/Currency/BuyChoCoin';
 // import Balance from 'commands/Currency/Balance';
 import Help from 'commands/System/Help';
+import Caphras from 'commands/BDO/Caphras';
 
 const commands = [
   Value,
@@ -30,6 +31,7 @@ const commands = [
   // BuyChoCoin,
   // Balance,
   Help,
+  Caphras,
 ];
 
 export default commands;
