@@ -42,11 +42,11 @@ const action = async (args: CommandArgs) => {
     const senderFunResult =
       (await FunResult.findOne({ userID: senderId })) || new FunResult({ userID: senderId });
 
-    if (senderFunResult.reputation.value <= 0) {
+    if (senderFunResult.reputation.value <= 2) {
       return channel.send(
         createEmbed({
           title: 'Reputation',
-          contents: `Users with 0 less or rep cannot -rep others. Your rep: ${senderFunResult.reputation.value}`,
+          contents: `Users with 2 less or rep cannot -rep others. It costs 2 rep to lower someone else's\nYour rep: ${senderFunResult.reputation.value}`,
           thumbnail: member.user.avatarURL() || member.user.defaultAvatarURL,
         })
       );
@@ -54,6 +54,7 @@ const action = async (args: CommandArgs) => {
 
     senderFun.reputation.lastUpdate = dayjs().toISOString();
     senderFun.reputation.lastTarget = firstUserMentioned.id;
+    senderFun.reputation.value = senderFun.reputation.value - 2;
     receiverFun.reputation.value = receiverRep - 1;
 
     const repHistory = new RepHistory({
