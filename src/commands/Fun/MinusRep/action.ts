@@ -42,11 +42,11 @@ const action = async (args: CommandArgs) => {
     const senderFunResult =
       (await FunResult.findOne({ userID: senderId })) || new FunResult({ userID: senderId });
 
-    if (senderFunResult.reputation.value <= 10) {
+    if (senderFunResult.reputation.value < 10) {
       return channel.send(
         createEmbed({
           title: 'Reputation',
-          contents: `Users with 10 less or rep cannot -rep others. It costs 5 rep to lower someone else's\nYour rep: ${senderFunResult.reputation.value}`,
+          contents: `Users with less than 10 rep cannot -rep others. It costs 5 rep to lower someone else's\nYour rep: ${senderFunResult.reputation.value}`,
           thumbnail: member.user.avatarURL() || member.user.defaultAvatarURL,
         })
       );
