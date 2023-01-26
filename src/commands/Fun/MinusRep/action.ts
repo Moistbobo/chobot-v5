@@ -39,6 +39,19 @@ const action = async (args: CommandArgs) => {
   } = receiverFun;
 
   if (getDaysSinceTimestamp(senderLastUpdate) >= 1) {
+    const senderFunResult =
+      (await FunResult.findOne({ userID: senderId })) || new FunResult({ userID: senderId });
+
+    if (senderFunResult.reputation.value <= 0) {
+      return channel.send(
+        createEmbed({
+          title: 'Reputation',
+          contents: `Users with 0 less or rep cannot -rep others. Your rep: ${senderFunResult.reputation.value}`,
+          thumbnail: member.user.avatarURL() || member.user.defaultAvatarURL,
+        })
+      );
+    }
+
     senderFun.reputation.lastUpdate = dayjs().toISOString();
     senderFun.reputation.lastTarget = firstUserMentioned.id;
     receiverFun.reputation.value = receiverRep - 1;
