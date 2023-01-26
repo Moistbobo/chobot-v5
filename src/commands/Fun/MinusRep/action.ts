@@ -64,8 +64,16 @@ const action = async (args: CommandArgs) => {
       time: dayjs().toISOString(),
     });
 
+    const minusCostHistory = new RepHistory({
+      userId: senderId,
+      senderId,
+      isIncrease: false,
+      time: dayjs().toISOString(),
+      value: 5,
+    });
+
     const embed = createEmbed({
-      contents: `${senderName} has decreased ${receiverName}'s reputation`,
+      contents: `${senderName} has paid 5 rep to decrease ${receiverName}'s reputation`,
       thumbnail:
         'https://ih1.redbubble.net/image.566561202.6466/ap,550x550,12x16,1,transparent,t.u2.png',
     });
@@ -74,6 +82,7 @@ const action = async (args: CommandArgs) => {
     await senderFun.save();
     await repHistory.save();
     await receiverFun.save();
+    await minusCostHistory.save();
   } else {
     const embed = createEmbed({
       contents: `${senderName}, you have already used your reputation action for the day.`,

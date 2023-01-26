@@ -4,6 +4,7 @@ export interface IRepHistory extends Document {
   userId: string;
   senderId: string;
   isIncrease: boolean;
+  value?: number;
   time: string;
 }
 
@@ -18,6 +19,7 @@ export const RepHistorySchema = new Schema({
   },
   isIncrease: Boolean,
   time: String,
+  value: Number,
 });
 
 export const RepHistory = model<IRepHistory>('RepHistory', RepHistorySchema);

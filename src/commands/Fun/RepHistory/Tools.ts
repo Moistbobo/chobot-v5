@@ -8,7 +8,9 @@ const renderHistoryItem = (repHistory: IRepHistory[]) =>
       (x) =>
         `${x.isIncrease ? '⬆ Increase' : '⬇ Decrease'}\nSender: ${GeneralUtils.mentionUser(
           x.senderId
-        )} \nSent on: ${dayjs(x.time).format('MM-DD-YYYY')}`
+        )} ${x.value ? `${x.value} (-rep cost)` : ''} \nSent on: ${dayjs(x.time).format(
+          'MM-DD-YYYY'
+        )}`
     )
     .join('\n\n');
 
