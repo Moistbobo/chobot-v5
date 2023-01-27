@@ -70,6 +70,7 @@ const action = async (args: CommandArgs) => {
       isIncrease: false,
       time: dayjs().toISOString(),
       value: 5,
+      targetId: firstUserMentioned.id,
     });
 
     const embed = createEmbed({

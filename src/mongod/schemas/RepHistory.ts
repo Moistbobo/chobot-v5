@@ -6,6 +6,7 @@ export interface IRepHistory extends Document {
   isIncrease: boolean;
   value?: number;
   time: string;
+  targetId?: string;
 }
 
 export const RepHistorySchema = new Schema({
@@ -20,6 +21,7 @@ export const RepHistorySchema = new Schema({
   isIncrease: Boolean,
   time: String,
   value: Number,
+  targetId: String,
 });
 
 export const RepHistory = model<IRepHistory>('RepHistory', RepHistorySchema);
