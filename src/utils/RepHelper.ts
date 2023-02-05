@@ -12,8 +12,6 @@ export const checkIfRepEnabled = async (channel: any, userToCheck: GuildMember) 
     reputation: { optOut },
   } = userFunResult;
 
-  console.log('optOut rep?', optOut);
-
   if (optOut) {
     const embed = MessageUtils.createEmbed({
       contents: `${userToCheck.displayName} has rep functions disabled.`,
