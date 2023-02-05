@@ -14,6 +14,7 @@ import TTSFile from 'commands/TTS/TTSFile';
 // import Balance from 'commands/Currency/Balance';
 import Help from 'commands/System/Help';
 import Caphras from 'commands/BDO/Caphras';
+import ToggleRep from 'commands/Fun/ToggleRep';
 
 const commands = [
   Value,
@@ -32,6 +33,7 @@ const commands = [
   // Balance,
   Help,
   Caphras,
+  ToggleRep,
 ];
 
 export default commands;

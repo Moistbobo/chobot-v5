@@ -14,6 +14,8 @@ export interface IFunResult extends Document {
     value: number;
     lastUpdate: string;
     lastTarget: string;
+    optOut?: boolean;
+    optOutLastUpdate: string;
   };
   deathmatchWins: number;
 }
@@ -61,6 +63,14 @@ export const FunResultSchema = new Schema({
     lastTarget: {
       type: String,
       default: '',
+    },
+    optOut: {
+      type: Boolean,
+      default: false,
+    },
+    optOutLastUpdate: {
+      type: String,
+      default: '1970-01-01T00:00:00Z',
     },
   },
   deathmatchWins: {
