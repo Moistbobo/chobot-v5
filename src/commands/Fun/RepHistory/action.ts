@@ -3,6 +3,7 @@ import MessageUtils from 'utils/MessageUtils';
 import CommandArgs from 'types/CommandArgs';
 import { RepHistory } from 'mongod/schemas/RepHistory';
 import { Message } from 'discord.js';
+import { checkIfRepEnabled } from 'utils/RepHelper';
 import Tools from './Tools';
 
 const action = async (args: CommandArgs) => {
@@ -23,6 +24,14 @@ const action = async (args: CommandArgs) => {
   const resultsPerPage = 5;
 
   const userId = firstMentionedUser ? firstMentionedUser.id : authorId;
+
+  if (await checkIfRepEnabled(channel, member)) {
+    return;
+  }
+  if (firstMentionedUser)
+    if (await checkIfRepEnabled(channel, firstMentionedUser)) {
+      return;
+    }
 
   const userRepHistory = await RepHistory.find({ userId }).sort({ time: -1 });
 

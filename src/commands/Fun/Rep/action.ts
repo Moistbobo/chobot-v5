@@ -2,6 +2,7 @@ import GeneralUtils from 'utils/GeneralUtils';
 import MessageUtils from 'utils/MessageUtils';
 import CommandArgs from 'types/CommandArgs';
 import FunResult from 'mongod/schemas/FunResult';
+import { checkIfRepEnabled } from 'utils/RepHelper';
 
 const Rep = async (args: CommandArgs) => {
   const {
@@ -16,6 +17,10 @@ const Rep = async (args: CommandArgs) => {
 
   const { id: authorId, displayName } = member;
 
+  if (await checkIfRepEnabled(channel, member)) {
+    return;
+  }
+
   if (content.split(' ').length > 1) {
     const mentionedUser = findMemberInServer(message);
 
@@ -24,6 +29,10 @@ const Rep = async (args: CommandArgs) => {
     const funResult =
       (await FunResult.findOne({ userID: mentionedUser.id })) ||
       new FunResult({ userID: mentionedUser.id });
+
+    if (await checkIfRepEnabled(channel, mentionedUser)) {
+      return;
+    }
 
     const embed = createEmbed({
       title: 'Reputation',

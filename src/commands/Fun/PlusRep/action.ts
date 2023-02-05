@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import CommandArgs from 'types/CommandArgs';
 import FunResult from 'mongod/schemas/FunResult';
 import { RepHistory } from 'mongod/schemas/RepHistory';
+import { checkIfRepEnabled } from 'utils/RepHelper';
 
 const action = async (args: CommandArgs) => {
   const {
@@ -25,6 +26,13 @@ const action = async (args: CommandArgs) => {
   const { displayName: senderName } = member;
 
   const { displayName: receiverName } = firstUserMentioned;
+
+  if (await checkIfRepEnabled(channel, member)) {
+    return;
+  }
+  if (await checkIfRepEnabled(channel, firstUserMentioned)) {
+    return;
+  }
 
   const senderFun =
     (await FunResult.findOne({ userID: senderId })) || new FunResult({ userID: senderId });
