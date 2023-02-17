@@ -8,6 +8,7 @@ const connect = () =>
     // @ts-ignore
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    authMechanism: 'SCRAM-SHA-256',
     auth: {
       username: envConfig.MONGO_DB_USERNAME,
       password: envConfig.MONGO_DB_PASSWORD,
