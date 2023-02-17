@@ -1,7 +1,7 @@
 import Mongoose from 'mongoose';
 import envConfig from 'config/envConfig';
 
-const db = 'mongodb://localhost/choggabot-v4';
+const db = 'mongodb://localhost/choggabot';
 
 const connect = () =>
   Mongoose.connect(db, {
