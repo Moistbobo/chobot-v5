@@ -60,9 +60,7 @@ const action = async (args: CommandArgs) => {
     });
 
     const embed = createEmbed({
-      contents: `${senderName} has increased ${receiverName}'s reputation`,
-      thumbnail:
-        'https://ih1.redbubble.net/image.566557656.6363/fposter,small,wall_texture,product,750x1000.u5.jpg',
+      contents: `⬆ ${senderName} has increased ${receiverName}'s reputation`,
     });
 
     await channel.send(embed);
