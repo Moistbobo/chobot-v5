@@ -28,7 +28,7 @@ const commands = [
   MinusRep,
   Rep,
   RepHistory,
-  TTSFile,
+  // TTSFile,
   // BuyChoCoin,
   // Balance,
   Help,
