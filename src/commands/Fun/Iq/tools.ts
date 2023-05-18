@@ -3,8 +3,8 @@ import fs from 'fs';
 import Jimp from 'jimp';
 
 const images = {
-  iqChart: 'https://i.imgur.com/UqvsPYQ.png',
-  iqMark: 'https://i.imgur.com/OOjW16r.png',
+  iqChart: 'https://i.ibb.co/tKy4p16/UqvsPYQ.png',
+  iqMark: 'https://i.ibb.co/LgLqzqS/OOjW16r.png',
 };
 
 const makeIQFolderIfNotExists = () => {
