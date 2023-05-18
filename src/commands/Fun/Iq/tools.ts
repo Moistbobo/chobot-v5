@@ -14,10 +14,14 @@ const makeIQFolderIfNotExists = () => {
 };
 
 const generateIQImage = async (iq: number) => {
-  const iqMark = await Jimp.read(images.iqMark);
-  const iqChart = await Jimp.read(images.iqChart);
+  try {
+    const iqMark = await Jimp.read(images.iqMark);
+    const iqChart = await Jimp.read(images.iqChart);
 
-  return iqChart.composite(iqMark, iq - iqMark.getWidth() / 2, 5);
+    return iqChart.composite(iqMark, iq - iqMark.getWidth() / 2, 5);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export default {
