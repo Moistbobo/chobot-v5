@@ -38,6 +38,7 @@ const action = async (args: CommandArgs) => {
     funResult.iq.lastUpdate = dayjs().toISOString();
 
     const iqImage = await Tools.generateIQImage(iqValue);
+    // @ts-ignore
     await iqImage.writeAsync(`./iqTest/${targetUser.id}.png`);
     const attachment = new Discord.MessageAttachment(
       `./iqTest/${targetUser.id}.png`,
