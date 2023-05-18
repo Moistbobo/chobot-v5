@@ -38,7 +38,7 @@ const action = async (args: CommandArgs) => {
     funResult.iq.lastUpdate = dayjs().toISOString();
 
     const iqImage = await Tools.generateIQImage(iqValue);
-    // @ts-ignore
+    console.log('[DEBUG]: writing iq image');
     await iqImage.writeAsync(`./iqTest/${targetUser.id}.png`);
     const attachment = new Discord.MessageAttachment(
       `./iqTest/${targetUser.id}.png`,
@@ -46,6 +46,7 @@ const action = async (args: CommandArgs) => {
     );
     await funResult.save();
 
+    console.log('[DEBUG]: creating embed');
     const embed = createEmbed({
       // eslint-disable-next-line max-len
       contents: `${targetUser.username}'s iq is **${iqValue}**\n${
@@ -57,9 +58,12 @@ const action = async (args: CommandArgs) => {
 
     await channel.send({ ...embed, files: [attachment] });
   } else {
+    console.log('[DEBUG]: iq image already exists');
     const {
       iq: { value: iqValue, lastUpdate: _lastUpdate },
     } = funResult;
+
+    console.log('[DEBUG]: attempting to find generated iq image...');
 
     const attachment = new Discord.MessageAttachment(
       `./iqTest/${targetUser.id}.png`,
