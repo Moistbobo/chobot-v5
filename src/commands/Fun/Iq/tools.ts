@@ -14,7 +14,6 @@ const makeIQFolderIfNotExists = () => {
 };
 
 const generateIQImage = async (iq: number) => {
-  console.log('[DEBUG]: generating iq image');
   const iqMark = await Jimp.read(images.iqMark);
   const iqChart = await Jimp.read(images.iqChart);
 
